@@ -37,7 +37,7 @@ t0=0
 tf=2
 t=t0+((tf-t0)*cs.linspace(0,m,m+1)/m).T
 
-ta=cs.MX.sym('ta',1)   
+ta=cs.MX.sym('ta',1)
 td=cs.MX.sym('td',1)
 f1=cs.Function('f1',[ta,td],[td*tau+ta]).map(m,'thread')
 tr=t[:,1:]
@@ -77,7 +77,7 @@ dts=cs.MX.sym('dts',1)
 taucoe=cs.Function('taucoe',[tau_s],[tau_coeff.T])
 der_coeff=cs.jacobian(tau_coeff.T,tau_s)
 dercoe=cs.Function('dercoe',[tau_s],[der_coeff])
-coeff=cs.horzcat(xn1s,0.5*xdot.map(n1,'thread')(xn1s,un1s)*(dts))@cs.inv(cs.horzcat(taucoe(tau_n1),dercoe(tau_n1)))    
+coeff=cs.horzcat(xn1s,0.5*xdot.map(n1,'thread')(xn1s,un1s)*(dts))@cs.inv(cs.horzcat(taucoe(tau_n1),dercoe(tau_n1)))
 
 cc=cs.Function('cc',[dts,xn1s,un1s],[cs.simplify(coeff)])
 
@@ -125,12 +125,24 @@ nlp.set_initial(x_seg_n1,cs.DM.rand(x_seg_n1.shape))
 nlp.set_initial(u_c,cs.DM.rand(u_c.shape))
 sol=nlp.solve()
 
-print(cs.n_nodes(cs.gradient(nlp.f,nlp.x)),cs.n_nodes(cs.jacobian(nlp.g,nlp.x)))
-
-
 X_s=sol.value(x_seg)
 U_s=sol.value(u_seg)
 t_s=sol.value(t_seg)
-plt.plot(t_s.flatten(),X_s[0].flatten(),t_s.flatten(),X_s[1].flatten())
-plt.figure()
-plt.plot(t_s.flatten(),U_s.flatten())
+
+plt.figure(figsize=(10, 6))
+plt.plot(t_s.flatten(),X_s[0].flatten(), label='x1')
+plt.plot(t_s.flatten(),X_s[1].flatten(), label='x2')
+plt.xlabel('time [s]')
+plt.ylabel('States')
+plt.title('State Trajectories')
+plt.legend()
+plt.grid(True)
+
+plt.figure(figsize=(10, 6))
+plt.plot(t_s.flatten(),U_s.flatten(), label='u')
+plt.xlabel('time [s]')
+plt.ylabel('Control (u)')
+plt.title('Control Trajectory')
+plt.legend()
+plt.grid(True)
+plt.show()
