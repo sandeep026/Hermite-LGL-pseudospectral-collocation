@@ -1,5 +1,5 @@
 import casadi as cs
-from lglmethods import LGL
+from lgltools import LGL
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -126,6 +126,7 @@ nlp.set_initial(u_c,cs.DM.rand(u_c.shape))
 sol=nlp.solve()
 
 print(cs.n_nodes(cs.gradient(nlp.f,nlp.x)),cs.n_nodes(cs.jacobian(nlp.g,nlp.x)))
+
 
 X_s=sol.value(x_seg)
 U_s=sol.value(u_seg)
