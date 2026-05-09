@@ -81,10 +81,6 @@ While the HLGL framework supports various control representations, this implemen
   * **Defect Constraints:** Enforces dynamics at the mid-segment collocation points.
   * **Quadrature:** Approximates the cost function using $w_j$ weights. 
 
-
-
-
-
 ---
 
 ## Usage
@@ -101,7 +97,7 @@ While the HLGL framework supports various control representations, this implemen
 
 ### Example: Double Integrator (Toy Car)
 
-The script solves a minimum-effort problem for a double integrator system:
+The OCP is taken from [2]
 
 
 $$\dot{x}_1 = x_2, \quad \dot{x}_2 = -x_2 + u$$
@@ -121,4 +117,4 @@ To change the accuracy, modify the polynomial order $N$. It must be an **odd int
 
 [1] Williams, P. (2009). Hermite-Legendre-Gauss-Lobatto Direct Transcription in Trajectory Optimization. *Journal of Guidance, Control, and Dynamics*. 
 
-[2] Herman, A. L., and Conway, B. A. (1996). Direct Optimization Using Collocation Based on High-Order Gauss-Lobatto Quadrature Rules. *Journal of Guidance, Control, and Dynamics*.
+[2] Conway, B. A., and K. M. Larson. "Collocation Versus Differential Inclusion in Direct Optimization." Journal of Guidance, Control, and Dynamics, vol. 21, no. 5, 1998, pp. 780–85. AIAA Aerospace Research Central, doi.org/10.2514/2.4306.
