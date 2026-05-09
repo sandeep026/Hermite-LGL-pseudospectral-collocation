@@ -108,13 +108,6 @@ $$\dot{x}_1 = x_2, \quad \dot{x}_2 = -x_2 + u$$
 
 $$\text{Cost: } \int u^2 dt$$
 
-To run the optimization:
-
-```python
-python hlgl_transcription.py
-
-```
-
 ### Adjusting Order
 
 To change the accuracy, modify the polynomial order $N$. It must be an **odd integer**:
