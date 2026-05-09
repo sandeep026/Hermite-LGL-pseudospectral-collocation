@@ -95,6 +95,9 @@ While the HLGL framework supports various control representations, this implemen
 * CasADi
 * NumPy
 * Matplotlib
+* lgltools
+
+[lgltools](https://github.com/sandeep026/lgltools) and can be installed via pip, poetry or other package manager.
 
 ### Example: Double Integrator (Toy Car)
 
